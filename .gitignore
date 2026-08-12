@@ -1,0 +1,22 @@
+# Build
+**/bin/
+**/obj/
+
+# Environment
+.env
+.env.*
+
+# User-specific
+.vs/
+*.user
+*.suo
+
+# Test results
+TestResults/
+
+# IDE
+.vscode/
+
+# OS
+.DS_Store
+Thumbs.db
