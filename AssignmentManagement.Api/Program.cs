@@ -11,6 +11,7 @@ using Microsoft.OpenApi;
 
 var builder = WebApplication.CreateBuilder(args);
 
+
 builder.Services.AddControllers()
     .ConfigureApiBehaviorOptions(options =>
     {
@@ -51,7 +52,16 @@ if (string.IsNullOrWhiteSpace(jwtSettings.Key))
     throw new InvalidOperationException(
         "JWT key is not configured.");
 }
-
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("Frontend", policy =>
+    {
+        policy
+            .WithOrigins("http://localhost:3000")
+            .AllowAnyHeader()
+            .AllowAnyMethod();
+    });
+});
 builder.Services.AddAuthentication(
     JwtBearerDefaults.AuthenticationScheme)
     .AddJwtBearer(options =>
@@ -112,7 +122,7 @@ app.UseMiddleware<ExceptionMiddleware>();
 
 app.UseAuthentication();
 app.UseAuthorization();
-
+app.UseCors("Frontend");
 app.MapControllers();
 
 using (var scope = app.Services.CreateScope())
