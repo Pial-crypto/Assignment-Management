@@ -71,17 +71,43 @@ public class SubjectsController : ControllerBase
         });
     }
 
-    [HttpDelete("{id:int}")]
-    public async Task<IActionResult> Delete(int id)
+
+[HttpDelete("{id:int}")]
+public async Task<IActionResult> Delete(int id)
+{
+    try
     {
         var subject = await _db.Subjects.FindAsync(id);
 
         if (subject is null)
-            return NotFound();
+        {
+            return NotFound(new
+            {
+                message = "Subject not found."
+            });
+        }
 
         _db.Subjects.Remove(subject);
+
         await _db.SaveChangesAsync();
 
         return NoContent();
     }
+    catch (DbUpdateException ex)
+    {
+        return BadRequest(new
+        {
+            message = "This subject cannot be deleted because it is currently assigned to one or more teachers.",
+            error = ex.InnerException?.Message ?? ex.Message
+        });
+    }
+    catch (Exception ex)
+    {
+        return StatusCode(500, new
+        {
+            message = "An unexpected error occurred while deleting the subject.",
+            error = ex.Message
+        });
+    }
+}
 }

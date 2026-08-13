@@ -20,7 +20,7 @@ public class AuthController : ControllerBase
     public async Task<IActionResult> Login(
         [FromBody] LoginRequest request)
     {
-         Console.WriteLine("Line One");
+        //  Console.WriteLine("Line One");
         if (string.IsNullOrWhiteSpace(request.Email) ||
             string.IsNullOrWhiteSpace(request.Password))
         {

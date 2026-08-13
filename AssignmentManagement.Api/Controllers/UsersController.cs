@@ -14,6 +14,8 @@ public class UsersController : ControllerBase
 {
     private readonly AppDbContext _db;
 
+   
+
     public UsersController(AppDbContext db)
     {
         _db = db;
@@ -22,6 +24,8 @@ public class UsersController : ControllerBase
     [HttpGet]
     public async Task<ActionResult<IEnumerable<UserResponse>>> GetAll()
     {
+       
+        // Console.WriteLine("Fetching all the users ");
         var users = await _db.Users
             .AsNoTracking()
             .Include(x => x.Class)
@@ -71,6 +75,7 @@ public class UsersController : ControllerBase
     public async Task<ActionResult<UserResponse>> Create(
         CreateUserRequest request)
     {
+          Console.WriteLine("Line One creating user");
         var email = request.Email.Trim().ToLowerInvariant();
 
         if (await _db.Users.AnyAsync(x => x.Email == email))
