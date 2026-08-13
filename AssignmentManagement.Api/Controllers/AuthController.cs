@@ -1,3 +1,4 @@
+using System.Runtime.InteropServices;
 using AssignmentManagement.Api.DTOs.Auth;
 using AssignmentManagement.Api.Services;
 using Microsoft.AspNetCore.Mvc;
@@ -19,6 +20,7 @@ public class AuthController : ControllerBase
     public async Task<IActionResult> Login(
         [FromBody] LoginRequest request)
     {
+         Console.WriteLine("Line One");
         if (string.IsNullOrWhiteSpace(request.Email) ||
             string.IsNullOrWhiteSpace(request.Password))
         {
@@ -27,6 +29,7 @@ public class AuthController : ControllerBase
                 message = "Email and password are required."
             });
         }
+       
 
         var result = await _authService.LoginAsync(request);
 
