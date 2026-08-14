@@ -1,9 +1,13 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
   reactCompiler: true,
-  output: "standalone"
+
+  // Enable standalone output only for Docker builds.
+  output:
+    process.env.NEXT_STANDALONE === "true"
+      ? "standalone"
+      : undefined,
 };
 
 export default nextConfig;

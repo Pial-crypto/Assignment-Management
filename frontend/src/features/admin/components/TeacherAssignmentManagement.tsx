@@ -291,7 +291,7 @@ export function TeacherAssignmentManagement() {
               !classId ||
               !subjectId
             }
-            className="inline-flex h-11 items-center justify-center gap-2 rounded-xl bg-indigo-600 px-5 text-sm font-semibold text-white shadow-sm transition hover:bg-indigo-700 focus:outline-none focus:ring-4 focus:ring-indigo-500/20 disabled:cursor-not-allowed disabled:opacity-50"
+            className="cursor-pointer inline-flex h-11 items-center justify-center gap-2 rounded-xl bg-indigo-600 px-5 text-sm font-semibold text-white shadow-sm transition hover:bg-indigo-700 focus:outline-none focus:ring-4 focus:ring-indigo-500/20 disabled:cursor-not-allowed disabled:opacity-50"
           >
             {creating ? (
               <>
@@ -300,7 +300,7 @@ export function TeacherAssignmentManagement() {
               </>
             ) : (
               <>
-                <Plus className="h-4 w-4" />
+                <Plus className="h-4 w-4 " />
                 Assign Teacher
               </>
             )}
@@ -414,7 +414,7 @@ export function TeacherAssignmentManagement() {
                           handleDelete(assignment.id)
                         }
                         disabled={isDeleting}
-                        className="inline-flex h-9 items-center justify-center gap-2 rounded-lg border border-transparent px-3 text-sm font-medium text-red-600 transition hover:border-red-200 hover:bg-red-50 hover:text-red-700 focus:outline-none focus:ring-4 focus:ring-red-500/10 disabled:cursor-not-allowed disabled:opacity-50"
+                        className="cursor-pointer inline-flex h-9 items-center justify-center gap-2 rounded-lg border border-transparent px-3 text-sm font-medium text-red-600 transition hover:border-red-200 hover:bg-red-50 hover:text-red-700 focus:outline-none focus:ring-4 focus:ring-red-500/10 disabled:cursor-not-allowed disabled:opacity-50"
                       >
                         {isDeleting ? (
                           <Loader2 className="h-4 w-4 animate-spin" />

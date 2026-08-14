@@ -7,6 +7,7 @@ using AssignmentManagement.Api.Services;
 using AssignmentManagement.Tests.Helpers;
 using FluentAssertions;
 using Microsoft.Extensions.Options;
+using Xunit;
 
 namespace AssignmentManagement.Tests.Auth;
 

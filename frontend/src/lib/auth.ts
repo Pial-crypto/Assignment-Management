@@ -30,3 +30,7 @@ export function clearAuth() {
 export function getToken(): string | null {
   return getAuth()?.token ?? null;
 }
+
+export function isTokenExpired(expiresAt: string): boolean {
+  return new Date(expiresAt) <= new Date();
+}

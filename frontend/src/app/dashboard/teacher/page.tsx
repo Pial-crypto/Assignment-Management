@@ -38,6 +38,9 @@ import { AssignmentCard } from "@/features/teacher/components/AssignmentCard";
 import { AssignmentForm } from "@/features/teacher/components/AssignmentForm";
 import { SubmissionList } from "@/features/teacher/components/SubmissionList";
 import { ReviewSubmissionForm } from "@/features/teacher/components/ReviewSubmissionForm";
+import { useAuth } from "@/features/auth/AuthContext";
+import { useRouter } from "next/navigation";
+import { isTokenExpired } from "@/lib/auth";
 
 export default function TeacherDashboard() {
   return (
@@ -71,7 +74,13 @@ function TeacherDashboardContent() {
 
   const [error, setError] =
     useState("");
-
+      const { user, logout } = useAuth();
+    const router=useRouter()
+     
+    if (user?.expiresAt && isTokenExpired(user.expiresAt)) {
+      //console.log("expired");
+        router.replace("/login");
+    }
 
 
   async function loadData() {
@@ -450,19 +459,7 @@ function TeacherDashboardContent() {
     submissions.length >= 0 &&
     !showAssignmentForm
   ) {
-    /*
-     * We only want to show SubmissionList when the user
-     * explicitly clicked "View Submissions".
-     *
-     * Therefore we need a reliable signal.
-     *
-     * The cleanest signal here is:
-     * selectedAssignment + submissions loaded.
-     *
-     * Since an empty submissions array is valid, we use
-     * selectedAssignment together with the fact that this
-     * state is only set by handleViewSubmissions.
-     */
+  
 
     return (
       <main className="min-h-screen bg-slate-100">
@@ -511,9 +508,7 @@ function TeacherDashboardContent() {
     );
   }
 
-  // =========================================================
-  // Main Dashboard
-  // =========================================================
+
 
   return (
     <main className="min-h-screen bg-slate-100">
@@ -628,7 +623,7 @@ function TeacherDashboardContent() {
                   true
                 );
               }}
-              className="inline-flex h-11 w-full items-center justify-center gap-2 rounded-xl bg-indigo-600 px-5 text-sm font-semibold text-white shadow-sm transition hover:bg-indigo-700 focus:outline-none focus:ring-4 focus:ring-indigo-500/20 sm:w-auto"
+              className=" cursor-pointer inline-flex h-11 w-full items-center justify-center gap-2 rounded-xl bg-indigo-600 px-5 text-sm font-semibold text-white shadow-sm transition hover:bg-indigo-700 focus:outline-none focus:ring-4 focus:ring-indigo-500/20 sm:w-auto"
             >
               <Plus className="h-4 w-4" />
               Create Assignment

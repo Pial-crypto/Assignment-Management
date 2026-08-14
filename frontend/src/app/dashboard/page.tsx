@@ -3,6 +3,7 @@
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { useAuth } from "@/features/auth/AuthContext";
+import { isTokenExpired } from "@/lib/auth";
 
 export default function DashboardRouter() {
   const router = useRouter();
@@ -11,7 +12,11 @@ export default function DashboardRouter() {
 
   useEffect(() => {
     if (isLoading) return;
-
+    
+if (user?.expiresAt && isTokenExpired(user.expiresAt)) {
+  //console.log("expired");
+    router.replace("/login");
+}
     if (!user) {
       router.replace("/login");
       return;

@@ -14,6 +14,7 @@ import {
   Loader2,
   AlertCircle,
   ShieldCheck,
+  Router,
 } from "lucide-react";
 
 import { ProtectedRoute } from "@/components/auth/ProtectedRoute";
@@ -34,6 +35,8 @@ import { SubjectManagement } from "@/features/admin/components/SubjectManagement
 import { TeacherAssignmentManagement } from "@/features/admin/components/TeacherAssignmentManagement";
 import { DashboardHeader } from "@/components/layout/DashboardHeader";
 import { AdminHeader } from "@/features/admin/components/AdminHeader";
+import { isTokenExpired } from "@/lib/auth";
+import { useRouter } from "next/navigation";
 
 export default function AdminDashboard() {
   return (
@@ -45,10 +48,13 @@ export default function AdminDashboard() {
 
 function AdminDashboardContent() {
   const { user, logout } = useAuth();
-
+const router=useRouter()
   const [stats, setStats] =
     useState<DashboardStats | null>(null);
-
+if (user?.expiresAt && isTokenExpired(user.expiresAt)) {
+  //console.log("expired");
+    router.replace("/login");
+}
   const [loading, setLoading] =
     useState(true);
 

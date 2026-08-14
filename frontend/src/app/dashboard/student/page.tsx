@@ -39,6 +39,10 @@ import {
   Clock3 as ClockIcon,
   ClipboardList as ClipboardIcon,
 } from "lucide-react";
+import { useAuth } from "@/features/auth/AuthContext";
+import { useRouter } from "next/navigation";
+import { isTokenExpired } from "@/lib/auth";
+
 
 type StudentView =
   | "dashboard"
@@ -73,6 +77,16 @@ function StudentDashboardContent() {
   const [error, setError] =
     useState("");
 
+
+
+
+      const { user, logout } = useAuth();
+    const router=useRouter()
+     
+    if (user?.expiresAt && isTokenExpired(user.expiresAt)) {
+      //console.log("expired");
+        router.replace("/login");
+    }
   async function loadAssignments() {
     try {
       setLoading(true);
@@ -316,7 +330,7 @@ function StudentDashboardContent() {
                 type="button"
                 onClick={loadAssignments}
                 disabled={loading}
-                className="inline-flex h-10 w-full items-center justify-center gap-2 rounded-xl border border-slate-200 bg-white px-4 text-sm font-medium text-slate-600 transition hover:border-indigo-200 hover:bg-indigo-50 hover:text-indigo-600 disabled:cursor-not-allowed disabled:opacity-50 sm:w-auto"
+                className="cursor-pointer inline-flex h-10 w-full items-center justify-center gap-2 rounded-xl border border-slate-200 bg-white px-4 text-sm font-medium text-slate-600 transition hover:border-indigo-200 hover:bg-indigo-50 hover:text-indigo-600 disabled:cursor-not-allowed disabled:opacity-50 sm:w-auto"
               >
                 <RefreshCw
                   className={`h-4 w-4 ${

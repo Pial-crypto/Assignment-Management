@@ -8,7 +8,9 @@ public static class TestDbContextFactory
     public static AppDbContext Create()
     {
         var options = new DbContextOptionsBuilder<AppDbContext>()
-            .UseInMemoryDatabase(Guid.NewGuid().ToString())
+            .UseInMemoryDatabase(
+                Guid.NewGuid().ToString())
+            .EnableSensitiveDataLogging()
             .Options;
 
         return new AppDbContext(options);

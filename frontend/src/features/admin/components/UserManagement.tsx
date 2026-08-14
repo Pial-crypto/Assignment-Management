@@ -405,9 +405,10 @@ export function UserManagement() {
           </div>
 
           {/* Submit */}
-          <div className="mt-5 flex justify-end">
+          <div className="mt-5 flex justify-end ">
             <button
               type="submit"
+              
               disabled={
                 creating ||
                 !form.name.trim() ||
@@ -415,7 +416,7 @@ export function UserManagement() {
                 !form.password ||
                 (form.role === "Student" && !form.classId)
               }
-              className="inline-flex h-11 w-full items-center justify-center gap-2 rounded-xl bg-indigo-600 px-5 text-sm font-semibold text-white shadow-sm transition hover:bg-indigo-700 focus:outline-none focus:ring-4 focus:ring-indigo-500/20 disabled:cursor-not-allowed disabled:opacity-50 sm:w-auto"
+              className="cursor-pointer inline-flex h-11 w-full items-center justify-center gap-2 rounded-xl bg-indigo-600 px-5 text-sm font-semibold text-white shadow-sm transition hover:bg-indigo-700 focus:outline-none focus:ring-4 focus:ring-indigo-500/20 disabled:cursor-not-allowed disabled:opacity-50 sm:w-auto"
             >
               {creating ? (
                 <>
@@ -424,7 +425,7 @@ export function UserManagement() {
                 </>
               ) : (
                 <>
-                  <Plus className="h-4 w-4" />
+                  <Plus className="h-4 w-4 cursor-pointer" />
                   Create User
                 </>
               )}
@@ -601,7 +602,7 @@ export function UserManagement() {
                                 handleDelete(user.id)
                               }
                               disabled={isDeleting}
-                              className="inline-flex h-9 items-center justify-center gap-2 rounded-lg border border-transparent px-3 text-sm font-medium text-red-600 transition hover:border-red-200 hover:bg-red-50 hover:text-red-700 focus:outline-none focus:ring-4 focus:ring-red-500/10 disabled:cursor-not-allowed disabled:opacity-50"
+                              className="cursor-pointer inline-flex h-9 items-center justify-center gap-2 rounded-lg border border-transparent px-3 text-sm font-medium text-red-600 transition hover:border-red-200 hover:bg-red-50 hover:text-red-700 focus:outline-none focus:ring-4 focus:ring-red-500/10 disabled:cursor-not-allowed disabled:opacity-50"
                             >
                               {isDeleting ? (
                                 <Loader2 className="h-4 w-4 animate-spin" />
@@ -671,7 +672,7 @@ export function UserManagement() {
                           }
                           disabled={isDeleting}
                           aria-label={`Delete ${user.name}`}
-                          className="inline-flex h-9 shrink-0 items-center justify-center rounded-lg border border-transparent px-2.5 text-red-600 transition hover:border-red-200 hover:bg-red-50 disabled:cursor-not-allowed disabled:opacity-50"
+                          className="cursor-pointer inline-flex h-9 shrink-0 items-center justify-center rounded-lg border border-transparent px-2.5 text-red-600 transition hover:border-red-200 hover:bg-red-50 disabled:cursor-not-allowed disabled:opacity-50"
                         >
                           {isDeleting ? (
                             <Loader2 className="h-4 w-4 animate-spin" />

@@ -232,7 +232,7 @@ export function AssignmentCard({
         <button
           type="button"
           onClick={() => onView(assignment)}
-          className="mt-5 inline-flex h-11 w-full items-center justify-center gap-2 rounded-xl bg-indigo-600 px-4 text-sm font-semibold text-white shadow-sm transition hover:bg-indigo-700 focus:outline-none focus:ring-4 focus:ring-indigo-500/20"
+          className=" cursor-pointer mt-5 inline-flex h-11 w-full items-center justify-center gap-2 rounded-xl bg-indigo-600 px-4 text-sm font-semibold text-white shadow-sm transition hover:bg-indigo-700 focus:outline-none focus:ring-4 focus:ring-indigo-500/20"
         >
           <BookOpen className="h-4 w-4" />
           View Assignment

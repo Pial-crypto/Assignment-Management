@@ -144,7 +144,7 @@ export function AssignmentCard({
           <button
             type="button"
             onClick={() => onEdit(assignment)}
-            className="inline-flex h-10 items-center justify-center gap-2 rounded-xl border border-slate-200 bg-white px-4 text-sm font-medium text-slate-700 transition hover:border-indigo-200 hover:bg-indigo-50 hover:text-indigo-700 focus:outline-none focus:ring-4 focus:ring-indigo-500/10"
+            className="cursor-pointer inline-flex h-10 items-center justify-center gap-2 rounded-xl border border-slate-200 bg-white px-4 text-sm font-medium text-slate-700 transition hover:border-indigo-200 hover:bg-indigo-50 hover:text-indigo-700 focus:outline-none focus:ring-4 focus:ring-indigo-500/10"
           >
             <Pencil className="h-4 w-4" />
             Edit
@@ -158,7 +158,7 @@ export function AssignmentCard({
                 onClick={() =>
                   onPublish(assignment.id)
                 }
-                className="inline-flex h-10 items-center justify-center gap-2 rounded-xl bg-indigo-600 px-4 text-sm font-semibold text-white shadow-sm transition hover:bg-indigo-700 focus:outline-none focus:ring-4 focus:ring-indigo-500/20"
+                className="cursor-pointer inline-flex h-10 items-center justify-center gap-2 rounded-xl bg-indigo-600 px-4 text-sm font-semibold text-white shadow-sm transition hover:bg-indigo-700 focus:outline-none focus:ring-4 focus:ring-indigo-500/20"
               >
                 <Send className="h-4 w-4" />
                 Publish
@@ -169,7 +169,7 @@ export function AssignmentCard({
                 onClick={() =>
                   onDelete(assignment.id)
                 }
-                className="inline-flex h-10 items-center justify-center gap-2 rounded-xl px-4 text-sm font-medium text-red-600 transition hover:bg-red-50 hover:text-red-700 focus:outline-none focus:ring-4 focus:ring-red-500/10 sm:ml-auto"
+                className="cursor-pointer inline-flex h-10 items-center justify-center gap-2 rounded-xl px-4 text-sm font-medium text-red-600 transition hover:bg-red-50 hover:text-red-700 focus:outline-none focus:ring-4 focus:ring-red-500/10 sm:ml-auto"
               >
                 <Trash2 className="h-4 w-4" />
                 Delete
@@ -183,7 +183,7 @@ export function AssignmentCard({
                 onClick={() =>
                   onUnpublish(assignment.id)
                 }
-                className="inline-flex h-10 items-center justify-center gap-2 rounded-xl border border-slate-200 bg-white px-4 text-sm font-medium text-slate-700 transition hover:border-amber-200 hover:bg-amber-50 hover:text-amber-700 focus:outline-none focus:ring-4 focus:ring-amber-500/10"
+                className="cursor-pointer inline-flex h-10 items-center justify-center gap-2 rounded-xl border border-slate-200 bg-white px-4 text-sm font-medium text-slate-700 transition hover:border-amber-200 hover:bg-amber-50 hover:text-amber-700 focus:outline-none focus:ring-4 focus:ring-amber-500/10"
               >
                 <Undo2 className="h-4 w-4" />
                 Unpublish
@@ -196,7 +196,7 @@ export function AssignmentCard({
                     assignment.id
                   )
                 }
-                className="inline-flex h-10 items-center justify-center gap-2 rounded-xl bg-indigo-600 px-4 text-sm font-semibold text-white shadow-sm transition hover:bg-indigo-700 focus:outline-none focus:ring-4 focus:ring-indigo-500/20"
+                className="cursor-pointer inline-flex h-10 items-center justify-center gap-2 rounded-xl bg-indigo-600 px-4 text-sm font-semibold text-white shadow-sm transition hover:bg-indigo-700 focus:outline-none focus:ring-4 focus:ring-indigo-500/20"
               >
                 <FileText className="h-4 w-4" />
                 View Submissions

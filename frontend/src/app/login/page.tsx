@@ -16,6 +16,7 @@ import {
 } from "lucide-react";
 
 import { useAuth } from "@/features/auth/AuthContext";
+import { isTokenExpired } from "@/lib/auth";
 
 export default function LoginPage() {
   const router = useRouter();
@@ -28,7 +29,7 @@ const { login, user, isLoading } = useAuth();
   const [error, setError] = useState("");
   const [isSubmitting, setIsSubmitting] =
     useState(false);
-
+// console.log(user,"What an user i am")
   const [showPassword, setShowPassword] =
     useState(false);
 
@@ -36,13 +37,20 @@ const { login, user, isLoading } = useAuth();
   if (isLoading) {
     return;
   }
+if (user?.expiresAt && isTokenExpired(user.expiresAt)) {
+  //console.log("expired");
+  return
+}
 
   if (!user) {
     return;
   }
+
 redirect(user?.role)
  
 }, [user, isLoading, router]);
+
+
 const redirect=(role:String)=>{
    if (role === "Admin") {
     router.replace("/dashboard/admin");
