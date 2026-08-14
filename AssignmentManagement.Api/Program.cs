@@ -64,6 +64,13 @@ var jwtSettings = builder.Configuration
         "JWT configuration is missing."
     );
 
+if (builder.Environment.IsEnvironment("Testing") &&
+    string.IsNullOrWhiteSpace(jwtSettings.Key))
+{
+    jwtSettings.Key =
+        "test-key-for-integration-tests-only-123456789";
+}
+
 if (string.IsNullOrWhiteSpace(jwtSettings.Key))
 {
     throw new InvalidOperationException(
@@ -173,8 +180,12 @@ app.MapControllers();
 
 
 // Database seeding
-using (var scope = app.Services.CreateScope())
+// Skip database seeding during integration tests because
+// integration tests use an InMemory database.
+if (!app.Environment.IsEnvironment("Testing"))
 {
+    using var scope = app.Services.CreateScope();
+
     var db = scope.ServiceProvider
         .GetRequiredService<AppDbContext>();
 
@@ -183,3 +194,7 @@ using (var scope = app.Services.CreateScope())
 
 
 app.Run();
+
+public partial class Program
+{
+}
