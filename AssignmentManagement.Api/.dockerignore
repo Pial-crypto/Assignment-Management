@@ -1,0 +1,13 @@
+bin/
+obj/
+.vs/
+.git/
+.gitignore
+
+appsettings.Development.json
+
+*.user
+*.suo
+
+.env
+.env.local
